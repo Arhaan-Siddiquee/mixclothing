@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clothing Combinations</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Clothing Combinations</h1>
+        <div class="clothing-input">
+            <div class="input-group">
+                <label for="upperInput">Upper Wear:</label>
+                <input type="file" id="upperInput">
+                <button onclick="addUpper()">Add Upper Wear</button>
+            </div>
+            <div class="input-group">
+                <label for="bottomInput">Bottom Wear:</label>
+                <input type="file" id="bottomInput">
+                <button onclick="addBottom()">Add Bottom Wear</button>
+            </div>
+        </div>
+        <div class="combinations">
+            <h3>Combinations</h3>
+            <ul id="combinationsList"></ul>
+        </div>
+        <div class="recommendations">
+            <h3>Recommendations</h3>
+            <button onclick="getDailyRecommendation()">Daily Recommendation</button>
+            <button onclick="getWeeklyRecommendation()">Weekly Recommendation</button>
+            <div id="recommendationResult"></div>
+        </div>
+        <div class="history">
+            <h3>Outfit History</h3>
+            <ul id="historyList"></ul>
+        </div>
+        <div class="share">
+            <h3>Share Combination</h3>
+            <button onclick="shareCombination()">Share on Social Media</button>
+        </div>
+        <div class="weather">
+            <h3>Weather-Based Recommendation</h3>
+            <button onclick="getWeatherRecommendation()">Get Recommendation</button>
+            <div id="weatherResult"></div>
+        </div>
+        <div class="wardrobe">
+            <h3>Virtual Wardrobe</h3>
+            <div id="virtualWardrobe"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

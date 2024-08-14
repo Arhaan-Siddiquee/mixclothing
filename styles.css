@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://wallpaperaccess.com/full/2489679.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .history, .share, .weather, .wardrobe {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.history ul, #virtualWardrobe {
+    list-style-type: none;
+    padding: 0;
+}
+
+.history ul li, #virtualWardrobe div {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #4CAF50;
+  }
+  
+  .clothing-input {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    flex: 1;
+  }
+  
+  .input-group input {
+    flex: 2;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .input-group button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .input-group button:hover {
+    background-color: #45a049;
+  }
+  
+  .combinations h3, .recommendations h3 {
+    text-align: center;
+    color: #4CAF50;
+  }
+  
+  #combinationsList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #combinationsList li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #combinationsList li button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+  }
+  
+  #combinationsList li button:hover {
+    background-color: #e53935;
+  }
+  
+  .recommendations {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #recommendationResult {
+    margin-top: 20px;
+  }
+  
