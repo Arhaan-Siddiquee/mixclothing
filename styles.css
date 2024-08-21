@@ -12,7 +12,15 @@ body {
   color: #333; /* Text color for better contrast */
   margin: 0;
   padding: 0;
-  text-align: center; /* Centering text */
+}
+
+/* Hover effects for lists and divs */
+#combinationsList li:hover, 
+.history ul li:hover, 
+#virtualWardrobe div:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.02);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Container for general layout */
@@ -27,8 +35,8 @@ body {
 
 /* Styling for headers */
 h1 {
+  text-align: center;
   color: #4CAF50;
-  font-size: 2.5em; /* Larger font size for headers */
 }
 
 /* Styling for clothing input */
@@ -39,63 +47,42 @@ h1 {
 /* Input group styling */
 .input-group {
   display: flex;
-  flex-direction: column; /* Stack input and button vertically */
   align-items: center;
   margin-bottom: 15px;
 }
 
 .input-group label {
-  font-size: 1.2em; /* Larger font size for labels */
-  margin-bottom: 10px;
-}
-
-.input-group .drop-zone {
-  border: 2px dashed #4CAF50; /* Green dashed border */
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  background-color: #fff; /* Card background color */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White shadow effect */
-  width: 100%;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.input-group .drop-zone p {
-  font-size: 1.1em; /* Larger font size for drop zone text */
-}
-
-.input-group .upload-link {
-  color: #2196F3; /* Blue link color */
-  cursor: pointer;
-  text-decoration: underline;
+  flex: 1;
 }
 
 .input-group input {
-  display: none; /* Hide the default file input */
+  flex: 2;
+  padding: 10px; /* Increased padding for better visibility */
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .input-group button {
-  padding: 10px 20px;
+  padding: 10px 20px; /* Increased padding for bigger button */
   border: none;
   border-radius: 5px;
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
-  font-size: 1.2em; /* Larger font size for buttons */
-  transition: background-color 0.3s, transform 0.3s;
+  font-size: 16px; /* Increased font size for better readability */
+  transition: background-color 0.3s, transform 0.2s; /* Added transition for animation */
 }
 
 .input-group button:hover {
   background-color: #45a049;
-  transform: scale(1.05); /* Scale button on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
 }
 
 /* Styling for combinations and recommendations */
 .combinations h3, .recommendations h3 {
+  text-align: center;
   color: #4CAF50;
-  font-size: 2em; /* Larger font size for section headers */
 }
 
 #combinationsList {
@@ -104,39 +91,35 @@ h1 {
 }
 
 #combinationsList li {
-  padding: 15px;
+  padding: 15px; /* Increased padding for better spacing */
   background-color: black; /* Card background color */
   border: 1px solid #ddd;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5); /* White shadow effect */
   color: white; /* Text color for better contrast on black background */
 }
 
-#combinationsList li img {
-  margin: 0 5px;
-}
-
 #combinationsList li button {
-  padding: 8px 15px;
+  padding: 5px 15px; /* Increased padding for bigger button */
   border: none;
   border-radius: 5px;
   background-color: #f44336;
   color: white;
   cursor: pointer;
-  font-size: 1em; /* Font size for list buttons */
-  transition: background-color 0.3s, transform 0.3s;
+  font-size: 14px; /* Increased font size for better readability */
 }
 
 #combinationsList li button:hover {
   background-color: #e53935;
-  transform: scale(1.05); /* Scale button on hover */
 }
 
+/* Recommendations section */
 .recommendations {
+  text-align: center;
   margin-top: 20px;
 }
 
@@ -158,8 +141,60 @@ h1 {
   background-color: #f1f1f1;
 }
 
-/* Drag-over styling */
-.drop-zone.drag-over {
-  background-color: #f1f1f1; /* Light gray background on drag over */
-  border-color: #2196F3; /* Blue border on drag over */
+/* Ripple Animation */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
+
+.ripple-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.05); /* Equivalent to bg-white/5 */
+  mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent); /* Equivalent to [mask-image:linear-gradient(to_bottom,white,transparent)] */
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.25); /* Equivalent to bg-foreground/25 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to shadow-xl */
+  border-style: solid;
+  border-width: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: ripple 1.5s infinite;
+}
+
+.ripple:nth-child(even) {
+  border-style: dashed;
+}
+
+/* Add this CSS for varying circle opacity and sizes */
+.ripple:nth-child(1) {
+  width: 210px;
+  height: 210px;
+  opacity: 0.24;
+  animation-delay: 0s;
+  border-color: hsl(0, 0%, 95%); /* Example color for border, adjust as needed */
+}
+
+.ripple:nth-child(2) {
+  width: 280px;
+  height: 280px;
+  opacity: 0.21;
+  animation-delay: 0.06s;
+  border-color: hsl(0, 0%, 90%); /* Example color for border, adjust as needed */
+}
+
+/* Repeat this pattern for the remaining circles, adjusting size, opacity, and delay as needed */
