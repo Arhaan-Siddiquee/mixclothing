@@ -1,143 +1,165 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('https://wallpaperaccess.com/full/2489679.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-#combinationsList li:hover, 
-.history ul li:hover, 
-#virtualWardrobe div:hover {
-      background-color: #e6e6e6;
-      transform: scale(1.02);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-}
-  
-  .history, .share, .weather, .wardrobe {
-    margin-top: 20px;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: black; /* Solid black background */
+  color: #333; /* Text color for better contrast */
+  margin: 0;
+  padding: 0;
+  text-align: center; /* Centering text */
 }
 
-.history ul, #virtualWardrobe {
-    list-style-type: none;
-    padding: 0;
+/* Container for general layout */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: black; /* Card background color */
+  box-shadow: 0 0 18px rgb(255, 255, 255); /* White shadow effect */
+  border-radius: 10px;
 }
 
-.history ul li, #virtualWardrobe div {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Styling for headers */
+h1 {
+  color: #4CAF50;
+  font-size: 2.5em; /* Larger font size for headers */
 }
 
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #4CAF50;
-  }
-  
-  .clothing-input {
-    margin-bottom: 20px;
-  }
-  
-  .input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .input-group label {
-    flex: 1;
-  }
-  
-  .input-group input {
-    flex: 2;
-    padding: 5px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .input-group button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .input-group button:hover {
-    background-color: #45a049;
-  }
-  
-  .combinations h3, .recommendations h3 {
-    text-align: center;
-    color: #4CAF50;
-  }
-  
-  #combinationsList {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  #combinationsList li {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  #combinationsList li button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f44336;
-    color: white;
-    cursor: pointer;
-  }
-  
-  #combinationsList li button:hover {
-    background-color: #e53935;
-  }
-  
-  .recommendations {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  #recommendationResult {
-    margin-top: 20px;
-  }
+/* Styling for clothing input */
+.clothing-input {
+  margin-bottom: 20px;
+}
 
-  ::-webkit-scrollbar {
-    width: 8px;
+/* Input group styling */
+.input-group {
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-size: 1.2em; /* Larger font size for labels */
+  margin-bottom: 10px;
+}
+
+.input-group .drop-zone {
+  border: 2px dashed #4CAF50; /* Green dashed border */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff; /* Card background color */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White shadow effect */
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.input-group .drop-zone p {
+  font-size: 1.1em; /* Larger font size for drop zone text */
+}
+
+.input-group .upload-link {
+  color: #2196F3; /* Blue link color */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.input-group input {
+  display: none; /* Hide the default file input */
+}
+
+.input-group button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2em; /* Larger font size for buttons */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.input-group button:hover {
+  background-color: #45a049;
+  transform: scale(1.05); /* Scale button on hover */
+}
+
+/* Styling for combinations and recommendations */
+.combinations h3, .recommendations h3 {
+  color: #4CAF50;
+  font-size: 2em; /* Larger font size for section headers */
+}
+
+#combinationsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#combinationsList li {
+  padding: 15px;
+  background-color: black; /* Card background color */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5); /* White shadow effect */
+  color: white; /* Text color for better contrast on black background */
+}
+
+#combinationsList li img {
+  margin: 0 5px;
+}
+
+#combinationsList li button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+  font-size: 1em; /* Font size for list buttons */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#combinationsList li button:hover {
+  background-color: #e53935;
+  transform: scale(1.05); /* Scale button on hover */
+}
+
+.recommendations {
+  margin-top: 20px;
+}
+
+#recommendationResult {
+  margin-top: 20px;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #4CAF50;
-    border-radius: 10px;
+  background-color: #4CAF50;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
+/* Drag-over styling */
+.drop-zone.drag-over {
+  background-color: #f1f1f1; /* Light gray background on drag over */
+  border-color: #2196F3; /* Blue border on drag over */
+}

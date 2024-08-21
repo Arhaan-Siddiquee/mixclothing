@@ -2,12 +2,13 @@ let upperWear = [];
 let bottomWear = [];
 let combinations = [];
 
+// Function to handle file selection for upper wear
 function addUpper() {
     const upperInput = document.getElementById('upperInput');
     const file = upperInput.files[0];
     const reader = new FileReader();
 
-    reader.onloadend = function() {
+    reader.onloadend = function () {
         upperWear.push(reader.result);
         updateCombinations();
     }
@@ -19,12 +20,13 @@ function addUpper() {
     upperInput.value = '';
 }
 
+// Function to handle file selection for bottom wear
 function addBottom() {
     const bottomInput = document.getElementById('bottomInput');
     const file = bottomInput.files[0];
     const reader = new FileReader();
 
-    reader.onloadend = function() {
+    reader.onloadend = function () {
         bottomWear.push(reader.result);
         updateCombinations();
     }
@@ -36,6 +38,7 @@ function addBottom() {
     bottomInput.value = '';
 }
 
+// Update combinations based on the current upper and bottom wear
 function updateCombinations() {
     combinations = [];
     upperWear.forEach(upper => {
@@ -46,12 +49,13 @@ function updateCombinations() {
     renderCombinations();
 }
 
+// Render combinations in the UI
 function renderCombinations() {
     const combinationsList = document.getElementById('combinationsList');
     combinationsList.innerHTML = '';
     combinations.forEach((combo, index) => {
         const listItem = document.createElement('li');
-        
+
         const upperImg = document.createElement('img');
         upperImg.src = combo.upper;
         upperImg.alt = 'Upper Wear';
@@ -67,7 +71,7 @@ function renderCombinations() {
         listItem.appendChild(upperImg);
         listItem.appendChild(document.createTextNode(' + '));
         listItem.appendChild(bottomImg);
-        
+
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.onclick = () => {
@@ -85,6 +89,7 @@ function renderCombinations() {
     });
 }
 
+// Share the selected combination
 function shareCombination(combo) {
     const shareData = {
         title: 'Check out my outfit!',
@@ -103,6 +108,7 @@ function shareCombination(combo) {
     }
 }
 
+// Get daily recommendation from the combinations
 function getDailyRecommendation() {
     if (combinations.length === 0) {
         document.getElementById('recommendationResult').textContent = 'No combinations available';
@@ -113,6 +119,7 @@ function getDailyRecommendation() {
     showRecommendation(combo);
 }
 
+// Get weekly recommendation from the combinations
 function getWeeklyRecommendation() {
     if (combinations.length < 7) {
         document.getElementById('recommendationResult').textContent = 'Not enough combinations available';
@@ -135,6 +142,7 @@ function getWeeklyRecommendation() {
     `).join('');
 }
 
+// Show a specific combination recommendation
 function showRecommendation(combo) {
     document.getElementById('recommendationResult').innerHTML = `
         <img src="${combo.upper}" alt="Upper Wear" width="50" height="50">
@@ -142,7 +150,7 @@ function showRecommendation(combo) {
     `;
 }
 
-// Weather Integration
+// Fetch weather data for weather-based recommendations
 async function getWeather() {
     // Replace 'your_api_key' with your actual API key
     const apiKey = 'your_api_key';
@@ -151,6 +159,7 @@ async function getWeather() {
     return data;
 }
 
+// Get weather-based recommendations
 async function getWeatherBasedRecommendation() {
     const weatherData = await getWeather();
     const temperature = weatherData.main.temp;
@@ -172,12 +181,12 @@ async function getWeatherBasedRecommendation() {
     showRecommendation(combo);
 }
 
-// Virtual Wardrobe
+// Show virtual wardrobe
 function showVirtualWardrobe() {
     const wardrobeContainer = document.getElementById('virtualWardrobe');
     wardrobeContainer.innerHTML = '<h3>Virtual Wardrobe</h3>';
 
-    upperWear.forEach((upper, index) => {
+    upperWear.forEach((upper) => {
         const upperImg = document.createElement('img');
         upperImg.src = upper;
         upperImg.alt = 'Upper Wear';
@@ -186,7 +195,7 @@ function showVirtualWardrobe() {
         wardrobeContainer.appendChild(upperImg);
     });
 
-    bottomWear.forEach((bottom, index) => {
+    bottomWear.forEach((bottom) => {
         const bottomImg = document.createElement('img');
         bottomImg.src = bottom;
         bottomImg.alt = 'Bottom Wear';
@@ -196,7 +205,7 @@ function showVirtualWardrobe() {
     });
 }
 
-// Reminder Notifications
+// Set reminder notifications
 function setReminder() {
     if (Notification.permission === 'granted') {
         new Notification('Don\'t forget to update your wardrobe today!');
@@ -212,3 +221,46 @@ function setReminder() {
 // Set reminder every 24 hours
 setInterval(setReminder, 24 * 60 * 60 * 1000);
 
+// Add drag and drop functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const upperDropZone = document.getElementById('upperDropZone');
+    const bottomDropZone = document.getElementById('bottomDropZone');
+    
+    function handleDrop(event, inputId) {
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        const input = document.getElementById(inputId);
+        input.files = files;
+        if (inputId === 'upperInput') {
+            addUpper();
+        } else if (inputId === 'bottomInput') {
+            addBottom();
+        }
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        this.classList.add('drag-over');
+    }
+
+    function handleDragLeave(event) {
+        event.preventDefault();
+        this.classList.remove('drag-over');
+    }
+
+    upperDropZone.addEventListener('drop', function (event) {
+        handleDrop(event, 'upperInput');
+        this.classList.remove('drag-over');
+    });
+
+    bottomDropZone.addEventListener('drop', function (event) {
+        handleDrop(event, 'bottomInput');
+        this.classList.remove('drag-over');
+    });
+
+    upperDropZone.addEventListener('dragover', handleDragOver);
+    bottomDropZone.addEventListener('dragover', handleDragOver);
+
+    upperDropZone.addEventListener('dragleave', handleDragLeave);
+    bottomDropZone.addEventListener('dragleave', handleDragLeave);
+});

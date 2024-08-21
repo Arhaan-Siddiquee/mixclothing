@@ -10,12 +10,18 @@
         <div class="clothing-input">
             <div class="input-group">
                 <label for="upperInput">Upper Wear:</label>
-                <input type="file" id="upperInput">
+                <div id="upperDropZone" class="drop-zone">
+                    <p>Drag & Drop files here or <span class="upload-link">Browse</span></p>
+                    <input type="file" id="upperInput" multiple>
+                </div>
                 <button onclick="addUpper()">Add Upper Wear</button>
             </div>
             <div class="input-group">
                 <label for="bottomInput">Bottom Wear:</label>
-                <input type="file" id="bottomInput">
+                <div id="bottomDropZone" class="drop-zone">
+                    <p>Drag & Drop files here or <span class="upload-link">Browse</span></p>
+                    <input type="file" id="bottomInput" multiple>
+                </div>
                 <button onclick="addBottom()">Add Bottom Wear</button>
             </div>
         </div>
